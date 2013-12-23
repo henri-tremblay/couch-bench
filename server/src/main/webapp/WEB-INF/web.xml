@@ -1,0 +1,36 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Couch Bench</display-name>
+	<servlet>
+		<servlet-name>GetDocument</servlet-name>
+		<servlet-class>com.henri.couchbench.GetDocumentServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>AllDocuments</servlet-name>
+		<servlet-class>com.henri.couchbench.AllDocumentsServlet</servlet-class>
+	</servlet>	
+	<servlet>
+		<servlet-name>InjectDocuments</servlet-name>
+		<servlet-class>com.henri.couchbench.InjectDocumentsServlet</servlet-class>
+	</servlet>	
+
+	<servlet-mapping>
+		<servlet-name>GetDocument</servlet-name>
+		<url-pattern>/get/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AllDocuments</servlet-name>
+		<url-pattern>/all</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>InjectDocuments</servlet-name>
+		<url-pattern>/inject</url-pattern>
+	</servlet-mapping>
+	
+	<welcome-file-list>
+	    <welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>
