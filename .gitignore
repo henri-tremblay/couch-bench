@@ -2,4 +2,4 @@ target/
 node_modules/
 .idea/
 *.iml
-
+.vagrant/
