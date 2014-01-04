@@ -59,6 +59,12 @@ sudo apt-get install tomcat7
 # Install the war
 cd ../couch-bench/server
 mvn install
+cp target/couch-bench.war /var/lib/tomcat7/webapps
+# Fill the server with data (could take a while)
+curl http://localhost:8080/couch-bench/inject
+# Exit
+exit
+cd ..
 ~~~
 
 Injector
@@ -72,7 +78,6 @@ vagrant ssh
 cd couch-bench/injector
 mvn install
 ~~~
-
 
 Run
 ---
