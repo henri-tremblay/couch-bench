@@ -12,7 +12,7 @@ class CouchSimulation extends Simulation {
   val users = Integer.getInteger("users", 1)
 
 	val httpConf = httpConfig
-			.baseURL("http://192.168.33.2:8081")
+			.baseURL("http://10.0.2.15:8080")
 			.acceptHeader("text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")
 			.acceptEncodingHeader("gzip,deflate,sdch")
 			.acceptLanguageHeader("en-US,en;q=0.8,fr;q=0.6")
