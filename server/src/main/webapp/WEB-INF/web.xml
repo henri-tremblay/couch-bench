@@ -4,6 +4,12 @@
 
 <web-app>
   <display-name>Couch Bench</display-name>
+
+  <context-param>
+    <param-name>couchdb</param-name>
+    <param-value>192.168.10.3</param-value>
+  </context-param>
+
 	<servlet>
 		<servlet-name>GetDocument</servlet-name>
 		<servlet-class>com.henri.couchbench.GetDocumentServlet</servlet-class>
@@ -27,7 +33,7 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>InjectDocuments</servlet-name>
-		<url-pattern>/inject</url-pattern>
+		<url-pattern>/inject/*</url-pattern>
 	</servlet-mapping>
 	
 	<welcome-file-list>
