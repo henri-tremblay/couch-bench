@@ -2,8 +2,7 @@
 # vi: set ft=ruby :
 
 # IP addresses of the injector and server
-@lr_subnet = "10.127.128"
-@lr_ip_host = "#{@lr_subnet}.1"
+@lr_subnet = "192.168.10"
 @lr_ip_injector = "#{@lr_subnet}.2"
 @lr_ip_server = "#{@lr_subnet}.3"
 
@@ -17,25 +16,24 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  
+  config.vm.define :injector do |config|
+    config.vm.host_name = "injector"    
+    config.vm.network "private_network", ip: @lr_ip_injector    
+    config.vm.provider :virtualbox do |vb|
+      vb.customize ["modifyvm", :id, "--cpus", 2]
+    end
 
-	config.vm.define :injector do |config|
-	end
-	
-	config.vm.define :server do |config|
-	end
-
-  # Enable provisioning with chef solo, specifying a cookbooks path, roles
-  # path, and data_bags path (all relative to this Vagrantfile), and adding
-  # some recipes and/or roles.
-  #
-  # config.vm.provision :chef_solo do |chef|
-  #   chef.cookbooks_path = "../my-recipes/cookbooks"
-  #   chef.roles_path = "../my-recipes/roles"
-  #   chef.data_bags_path = "../my-recipes/data_bags"
-  #   chef.add_recipe "mysql"
-  #   chef.add_role "web"
-  #
-  #   # You may also specify custom JSON attributes:
-  #   chef.json = { :mysql_password => "foo" }
-  # end
+    config.vm.provision :shell, :privileged => false, :path => "injector.sh"
+  end
+  
+  config.vm.define :server do |config|
+    config.vm.host_name = "server"
+    config.vm.network "private_network", ip: @lr_ip_server
+    config.vm.provider :virtualbox do |vb|
+      vb.customize ["modifyvm", :id, "--cpus", 4]
+    end
+    
+    config.vm.provision :shell, :privileged => false, :path => "server.sh"
+  end
 end
