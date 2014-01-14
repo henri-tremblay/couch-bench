@@ -3,9 +3,10 @@
 echo "=> Updating apt"
 sudo apt-get update -y
 
-echo "=> Install java and git"
+echo "=> Install Java and required tools"
 sudo apt-get install openjdk-7-jdk -y
 sudo apt-get install git -y
+sudo apt-get install curl -y
 
 echo "=> Install Maven"
 if [ ! -f apache-maven-3.1.1-bin.tar.gz ]; then
