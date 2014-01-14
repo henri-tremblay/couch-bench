@@ -2,6 +2,7 @@
 
 echo "=> Updating apt"
 sudo apt-get update -y
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade
 
 echo "=> Install Java and required tools"
 sudo apt-get install openjdk-7-jdk -y
