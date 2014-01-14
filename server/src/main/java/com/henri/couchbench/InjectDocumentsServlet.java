@@ -1,12 +1,12 @@
 package com.henri.couchbench;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Random;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.fourspaces.couchdb.Database;
 import com.fourspaces.couchdb.Document;
@@ -32,6 +32,9 @@ public class InjectDocumentsServlet extends HttpServlet {
 		Session s = new Session(getServletContext().getInitParameter("couchdb"), 5984);
 		Database db = s.getDatabase("testdb");
 
+    // Header
+    out.println("index,id");
+    
 		Random rand = new Random();
 		byte[] value = new byte[4000];
 	    
@@ -40,7 +43,7 @@ public class InjectDocumentsServlet extends HttpServlet {
 			rand.nextBytes(value);
 			newdoc.put("value", value);
 			db.saveDocument(newdoc);
-			out.println(i + ":" + newdoc.getId());
+			out.println(i + "," + newdoc.getId());
         if(i % 100 == 0) {
           out.flush();
         }

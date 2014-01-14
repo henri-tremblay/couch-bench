@@ -25,11 +25,15 @@ public class AllDocumentsServlet extends HttpServlet {
 		PrintWriter out = res.getWriter();
 
 		res.setContentType("text/plain");
+		
+		// Header
+    out.println("index,id");
+    
 		@SuppressWarnings("unchecked")
     List<JSONObject> rows = (List<JSONObject>) results.get("rows");
 		int i  = 0;
 		for(JSONObject doc : rows) {
-		    String line = i + ":" + doc.getString("id");
+		    String line = i + "," + doc.getString("id");
 		    out.println(line);
 		    i++;
         if(i % 100 == 0) {
