@@ -1,11 +1,14 @@
 package com.henri.couchbench;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import net.sf.json.JSONObject;
 
 import com.fourspaces.couchdb.Database;
 import com.fourspaces.couchdb.Session;
@@ -22,8 +25,16 @@ public class AllDocumentsServlet extends HttpServlet {
 		PrintWriter out = res.getWriter();
 
 		res.setContentType("text/plain");
-		for(Object doc : results.entrySet()) {
-		    out.println(doc);
+		@SuppressWarnings("unchecked")
+    List<JSONObject> rows = (List<JSONObject>) results.get("rows");
+		int i  = 0;
+		for(JSONObject doc : rows) {
+		    String line = i + ":" + doc.getString("id");
+		    out.println(line);
+		    i++;
+        if(i % 100 == 0) {
+          out.flush();
+        }
 		}
 		out.close();
 	}
