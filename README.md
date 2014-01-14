@@ -15,7 +15,8 @@ Prepare the database
 From the injector, insert 10 000 entries of 4000 bytes each in CouchDB and keep the result
 ~~~bash
 vagrant ssh injector
-curl http://192.168.10.3:8080/couch-bench/inject/10000 > ids.csv
+cd couch-bench/injector
+wget -O src/test/resources/data/ids.csv http://192.168.10.3:8080/couch-bench/inject/10000
 ~~~
 
 Launch on J2EE
@@ -28,3 +29,7 @@ TBD
 Launch on NodeJS
 ------
 TBD
+
+Other useful commands
+------
+To retrieve all the ids you can call `wget -O ids.csv http://192.168.10.3:8080/couch-bench/all`
