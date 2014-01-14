@@ -21,6 +21,7 @@ wget -O src/test/resources/data/ids.csv http://192.168.10.3:8080/couch-bench/inj
 
 Launch on J2EE
 ------
+This will launch Gatling with a 10 seconds ramp (hardcoded), a 5 minutes duration (hardcoded) and 10 users (parameter, default is 1). 
 ~~~bash
 vagrant ssh injector
 cd couch-bench/injector
@@ -29,7 +30,19 @@ mvn gatling:execute -Dgatling.simulationClass=CouchSimulation -Dusers=10
 
 Launch on NodeJS
 ------
-TBD
+First, launch node on the server
+~~~bash
+vagrant ssh server
+cd couch-bench/server
+npm install
+nodejs main.js
+~~~
+Then, launch the benchmark
+~~~bash
+vagrant ssh injector
+cd couch-bench/injector
+mvn gatling:execute -Dgatling.simulationClass=CouchSimulation -Dusers=10 -DisNode=true
+~~~
 
 Other useful commands
 ------
