@@ -1,4 +1,4 @@
-
+import java.lang.Boolean
 import com.excilys.ebi.gatling.core.Predef._
 import com.excilys.ebi.gatling.http.Predef._
 import com.excilys.ebi.gatling.jdbc.Predef._
@@ -8,10 +8,11 @@ import bootstrap._
 import assertions._
 
 class CouchSimulation extends Simulation {
-
+  
+	val isNode = Boolean.getBoolean("isNode")
   val users = Integer.getInteger("users", 1)
-  val getUrl = "/couch-bench/get/${id}" // use "/${id}" for node
-  val port = "8080" // use 1337 for node
+  val getUrl = if(isNode) "/${id}" else "/couch-bench/get/${id}"
+  val port = if(isNode) 8081 else "8080"
   
   val httpConf = httpConfig
     .baseURL("http://192.168.10.3:" + port)
