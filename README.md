@@ -23,7 +23,8 @@ Launch on J2EE
 ------
 ~~~bash
 vagrant ssh injector
-TBD
+cd couch-bench/injector
+mvn gatling:execute -Dgatling.simulationClass=CouchSimulation -Dusers=10
 ~~~
 
 Launch on NodeJS
