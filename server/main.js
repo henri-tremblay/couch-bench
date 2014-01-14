@@ -12,7 +12,6 @@ process.on('uncaughtException', function (err) {
  
 http.createServer(function(req,res) {
   var id = url.parse(req.url).pathname.substring(1);
-  console.log('id: ' + id);
   db.get(id,function(err, doc) {
     if (err) {
       console.log('Error '+err.message);
