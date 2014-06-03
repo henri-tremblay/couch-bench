@@ -7,8 +7,14 @@ as a demonstration in the following [article](http://blog.octo.com/lart-du-bench
 The setup uses two machines, an injector (using Gatling) and a server (hosting Tomcat, NodeJS and CouchDB).
 
 Create the machines
-We will use Vagrant and VirtualBox so you should have both installed on your machine. The default configuration uses 2 CPUs for the injector and 4 CPUs for the server.
+-------------------
+We will use Vagrant and VirtualBox so you should have both installed on your machine. 
+
+The default configuration uses 2 CPUs for the injector and 4 CPUs for the server.
+~~~bash
 cd couch-bench/vm
+vagrant up
+~~~
 
 Prepare the database
 ------
