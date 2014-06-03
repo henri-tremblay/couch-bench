@@ -53,3 +53,4 @@ mvn gatling:execute -Dgatling.simulationClass=CouchSimulation -Dusers=10 -DisNod
 Other useful commands
 ------
 To retrieve all the ids you can call `wget -O ids.csv http://192.168.10.3:8080/couch-bench/all`
+To check that CouchDB is working do `curl http://192.168.10.3:5984/`
