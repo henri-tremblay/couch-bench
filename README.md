@@ -1,8 +1,8 @@
 couch-bench
 ===========
 
-Reproduction of the [NodeJS vs J2EE benchmark]{http://java.dzone.com/articles/performance-comparison-between} used
-as a demonstration in the following [article]{http://blog.octo.com/lart-du-benchmark/}.
+Reproduction of the [NodeJS vs J2EE benchmark](http://java.dzone.com/articles/performance-comparison-between) used
+as a demonstration in the following [article](http://blog.octo.com/lart-du-benchmark/).
 
 The setup uses two machines, an injector (using Gatling) and a server (hosting Tomcat, NodeJS and CouchDB).
 
