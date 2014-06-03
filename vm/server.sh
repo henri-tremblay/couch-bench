@@ -13,9 +13,13 @@ echo "=> Install couchdb"
 sudo apt-get install couchdb -y
 sudo apt-get install curl -y
 curl -X PUT http://localhost:5984/testdb
+sudo sed -i "s/;bind_address = 127.0.0.1/bind_address = 0.0.0.0/" /etc/couchdb/local.ini 
+sudo service couchdb restart
 
 echo "=> Install Tomcat"
 sudo apt-get install tomcat7 -y
+sudo echo "JAVA_OPTS=\"\${JAVA_OPTS} -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8104 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Djava.rmi.server.hostname=192.168.10.3\"">>/etc/default/tomcat7
+sudo service tomcat7 restart
 
 echo "=> Install NodeJS"
 sudo apt-get install -y python-software-properties python g++ make
